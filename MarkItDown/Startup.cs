@@ -1,3 +1,4 @@
+using MarkItDown.Interpreter;
 using Microsoft.AspNetCore.Blazor.Builder;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -7,6 +8,7 @@ namespace MarkItDown
     {
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddTransient<MarkdownInterpreter>();
         }
 
         public void Configure(IBlazorApplicationBuilder app)

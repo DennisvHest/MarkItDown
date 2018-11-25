@@ -1,0 +1,29 @@
+﻿@using MarkItDown.Interpreter
+@inject MarkdownInterpreter MarkdownInterpreter
+
+
+<div class="row position-absolute full-width full-height">
+    <div class="col-6">
+        <textarea class="form-control position-absolute full-height" id="editor" bind="@SourceText"></textarea>
+    </div>
+    <div class="col-6">
+        <HtmlViewer HtmlContent="@((MarkupString)TargetHtml)" />
+    </div>
+</div>
+
+@functions
+{
+    private string _sourceText;
+
+    private string SourceText
+    {
+        get => _sourceText;
+        set
+        {
+            _sourceText = value;
+            TargetHtml = MarkdownInterpreter.Interpret(value);
+        }
+    }
+
+    private string TargetHtml { get; set; }
+}
